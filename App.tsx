@@ -1,11 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { Modal, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { getCurrentUser, signOut } from 'aws-amplify/auth';
+import { Hub } from 'aws-amplify/utils';
 import Home from './screens/home/Home';
 import Community from './screens/community/Community';
 import Personal from './screens/personal/Personal';
 import TasksPage from './screens/tasks/TasksPage';
 import ProjectsPage from './screens/home/pages/ProjectsPage';
+import SignIn from './screens/auth/SignIn';
+import Register from './screens/auth/Register';
 import './awsConfig';
 
 
@@ -46,6 +50,9 @@ export default function App() {
   const scrollRef = useRef<ScrollView>(null);
   const [showTasksModal, setShowTasksModal] = useState(false);
   const [showProjectsModal, setShowProjectsModal] = useState(false);
+  const [authUser, setAuthUser] = useState<any>(null);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [authMode, setAuthMode] = useState<'signIn' | 'signUp'>('signIn');
 
   const pageIndex = useCallback((key: Page['key']) => pages.findIndex((p) => p.key === key), []);
   const goToPage = useCallback(
@@ -62,6 +69,65 @@ export default function App() {
     const target = homeIndex >= 0 ? width * homeIndex : width;
     scrollRef.current?.scrollTo({ x: target, animated: false });
   }, [pageIndex, width]);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const user = await getCurrentUser();
+        setAuthUser(user);
+      } catch {
+        setAuthUser(null);
+      } finally {
+        setAuthLoading(false);
+      }
+    };
+    checkUser();
+    const unsubscribe = Hub.listen('auth', ({ payload }) => {
+      if (payload.event === 'signedIn') {
+        checkUser();
+      }
+      if (payload.event === 'signedOut') {
+        setAuthUser(null);
+      }
+    });
+    return unsubscribe;
+  }, []);
+
+  const handleSignInSuccess = useCallback(async () => {
+    try {
+      const user = await getCurrentUser();
+      setAuthUser(user);
+    } catch {}
+  }, []);
+
+  const handleSignOut = useCallback(async () => {
+    try {
+      await signOut();
+      setAuthUser(null);
+    } catch {}
+  }, []);
+
+  if (authLoading) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (!authUser) {
+    return authMode === 'signIn' ? (
+      <SignIn
+        onSignInSuccess={handleSignInSuccess}
+        onSwitchToRegister={() => setAuthMode('signUp')}
+      />
+    ) : (
+      <Register
+        onRegisterSuccess={() => setAuthMode('signIn')}
+        onSwitchToSignIn={() => setAuthMode('signIn')}
+      />
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -133,6 +199,10 @@ export default function App() {
           />
         </View>
       </Modal>
+
+      <TouchableOpacity style={styles.signOut} onPress={handleSignOut}>
+        <Text style={[styles.buttonText, styles.secondaryText]}>Sign Out</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -157,6 +227,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+
   label: {
     fontSize: 12,
     letterSpacing: 2,
@@ -172,5 +243,23 @@ const styles = StyleSheet.create({
     color: '#2D2D2D',
     textAlign: 'center',
     lineHeight: 24,
+  },
+
+  buttonText: {
+    color: '#FFFFFF',
+    fontWeight: '600',
+  },
+  secondaryText: {
+    color: '#111827',
+  },
+  signOut: {
+    position: 'absolute',
+    top: 40,
+    right: 16,
+    padding: 8,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
   },
 });
