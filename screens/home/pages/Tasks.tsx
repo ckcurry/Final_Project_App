@@ -2,6 +2,7 @@ import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { DeviceEventEmitter, Keyboard, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { client } from '../../lib/dataClient';
 
 type Task = {
   name: string;
@@ -257,6 +258,17 @@ const Tasks: FC<Props> = (props) => {
     }
   }, []);
 
+  const syncToCloud = useCallback(async (task: Task) => {
+    try {
+      await client.models.Task.create({
+        name: task.name,
+        dueDate: task.dueDate,
+        recurrence: task.recurrence,
+        category: task.category,
+      });
+    } catch {}
+  }, []);
+
   const handleAdd = useCallback(() => {
     const trimmedName = name.trim();
     const trimmedDate = dueDate.trim();
@@ -264,8 +276,10 @@ const Tasks: FC<Props> = (props) => {
       setStatus('Enter a name and due date.');
       return;
     }
-    const next: Task[] = [...tasks, { name: trimmedName, dueDate: trimmedDate, recurrence, category }];
+    const newTask = { name: trimmedName, dueDate: trimmedDate, recurrence, category };
+    const next: Task[] = [...tasks, newTask];
     persistTasks(next);
+    syncToCloud(newTask);
     setName('');
     setDueDate(() => {
       const now = new Date();
@@ -279,7 +293,7 @@ const Tasks: FC<Props> = (props) => {
       setShowCalendar(false);
     }
     setShowForm(false);
-  }, [name, dueDate, recurrence, category, tasks, persistTasks]);
+  }, [name, dueDate, recurrence, category, tasks, persistTasks, syncToCloud]);
 
   const handleRemove = useCallback(
     (index: number) => {

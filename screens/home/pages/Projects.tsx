@@ -1,6 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { DeviceEventEmitter, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { client } from '../../lib/dataClient';
 
 type Project = {
   name: string;
@@ -111,7 +112,7 @@ const Projects: FC = () => {
     setMilestones((prev) => prev.filter((_, i) => i !== idx));
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const trimmedName = name.trim();
     const cleanedMilestones = milestones.map((m) => m.trim()).filter(Boolean);
     if (!trimmedName) {
@@ -120,6 +121,16 @@ const Projects: FC = () => {
     }
     const next: Project[] = [...projects, { name: trimmedName, milestones: cleanedMilestones }];
     persist(next);
+    
+    try {
+      const { data: project } = await client.models.Project.create({ name: trimmedName });
+      if (project && cleanedMilestones.length > 0) {
+        for (const milestone of cleanedMilestones) {
+          await client.models.Milestone.create({ projectId: project.id, name: milestone });
+        }
+      }
+    } catch {}
+    
     setName('');
     setMilestones(['']);
     setShowForm(false);
