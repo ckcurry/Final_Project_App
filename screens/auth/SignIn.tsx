@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { signIn } from 'aws-amplify/auth';
+import { signIn, confirmSignUp, resendSignUpCode } from 'aws-amplify/auth';
 
 type SignInProps = {
   onSignInSuccess: () => void;
@@ -12,6 +12,8 @@ export default function SignIn({ onSignInSuccess, onSwitchToRegister }: SignInPr
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [needsConfirmation, setNeedsConfirmation] = useState(false);
+  const [confirmCode, setConfirmCode] = useState('');
 
   const handleSignIn = async () => {
     setError('');
@@ -20,11 +22,75 @@ export default function SignIn({ onSignInSuccess, onSwitchToRegister }: SignInPr
       await signIn({ username: email.trim(), password });
       onSignInSuccess();
     } catch (err: any) {
-      setError(err?.message ?? 'Sign in failed');
+      if (err?.name === 'UserNotConfirmedException') {
+        setNeedsConfirmation(true);
+        setError('Please confirm your email first');
+      } else {
+        setError(err?.message ?? 'Sign in failed');
+      }
     } finally {
       setLoading(false);
     }
   };
+
+  const handleConfirm = async () => {
+    setError('');
+    setLoading(true);
+    try {
+      await confirmSignUp({ username: email.trim(), confirmationCode: confirmCode });
+      setNeedsConfirmation(false);
+      setConfirmCode('');
+      await signIn({ username: email.trim(), password });
+      onSignInSuccess();
+    } catch (err: any) {
+      setError(err?.message ?? 'Confirmation failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResend = async () => {
+    setError('');
+    try {
+      await resendSignUpCode({ username: email.trim() });
+      setError('Code sent to your email');
+    } catch (err: any) {
+      setError(err?.message ?? 'Resend failed');
+    }
+  };
+
+  if (needsConfirmation) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Confirm Email</Text>
+        <Text style={styles.subtitle}>Enter code sent to {email}</Text>
+        <View style={styles.form}>
+          <TextInput
+            value={confirmCode}
+            onChangeText={setConfirmCode}
+            placeholder="Confirmation code"
+            placeholderTextColor="#6B7280"
+            keyboardType="number-pad"
+            style={styles.input}
+          />
+          <TouchableOpacity
+            style={[styles.button, styles.primary]}
+            onPress={handleConfirm}
+            disabled={loading}
+          >
+            <Text style={styles.buttonText}>{loading ? 'Confirming...' : 'Confirm & Sign In'}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, styles.secondary]} onPress={handleResend}>
+            <Text style={[styles.buttonText, styles.secondaryText]}>Resend Code</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, styles.secondary]} onPress={() => setNeedsConfirmation(false)}>
+            <Text style={[styles.buttonText, styles.secondaryText]}>Back</Text>
+          </TouchableOpacity>
+          {error ? <Text style={styles.error}>{error}</Text> : null}
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -116,5 +182,11 @@ const styles = StyleSheet.create({
   error: {
     fontSize: 13,
     color: '#B91C1C',
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#6B7280',
+    marginBottom: 24,
+    textAlign: 'center',
   },
 });

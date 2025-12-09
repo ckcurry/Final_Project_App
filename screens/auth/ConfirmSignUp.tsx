@@ -1,89 +1,70 @@
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { signUp } from 'aws-amplify/auth';
-import ConfirmSignUp from './ConfirmSignUp';
+import { confirmSignUp, resendSignUpCode } from 'aws-amplify/auth';
 
-type RegisterProps = {
-  onRegisterSuccess: () => void;
-  onSwitchToSignIn: () => void;
+type ConfirmSignUpProps = {
+  email: string;
+  onConfirmed: () => void;
+  onBack: () => void;
 };
 
-export default function Register({ onRegisterSuccess, onSwitchToSignIn }: RegisterProps) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function ConfirmSignUp({ email, onConfirmed, onBack }: ConfirmSignUpProps) {
+  const [code, setCode] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
-  const [needsConfirmation, setNeedsConfirmation] = useState(false);
 
-  const handleSignUp = async () => {
+  const handleConfirm = async () => {
     setError('');
     setSuccess('');
     setLoading(true);
     try {
-      const { nextStep } = await signUp({
-        username: email.trim(),
-        password,
-        options: {
-          userAttributes: { email: email.trim() },
-        },
-      });
-      if (nextStep.signUpStep === 'CONFIRM_SIGN_UP') {
-        setNeedsConfirmation(true);
-      } else {
-        setSuccess('Account created!');
-        setTimeout(() => onRegisterSuccess(), 1500);
-      }
+      await confirmSignUp({ username: email, confirmationCode: code });
+      setSuccess('Email confirmed! You can now sign in.');
+      setTimeout(() => onConfirmed(), 1500);
     } catch (err: any) {
-      setError(err?.message ?? 'Sign up failed');
+      setError(err?.message ?? 'Confirmation failed');
     } finally {
       setLoading(false);
     }
   };
 
-  if (needsConfirmation) {
-    return (
-      <ConfirmSignUp
-        email={email}
-        onConfirmed={onRegisterSuccess}
-        onBack={() => {
-          setNeedsConfirmation(false);
-          onSwitchToSignIn();
-        }}
-      />
-    );
-  }
+  const handleResend = async () => {
+    setError('');
+    setSuccess('');
+    try {
+      await resendSignUpCode({ username: email });
+      setSuccess('Code resent to your email');
+    } catch (err: any) {
+      setError(err?.message ?? 'Resend failed');
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create Account</Text>
+      <Text style={styles.title}>Confirm Email</Text>
+      <Text style={styles.subtitle}>Enter the code sent to {email}</Text>
       <View style={styles.form}>
         <TextInput
-          value={email}
-          onChangeText={setEmail}
-          placeholder="Email"
+          value={code}
+          onChangeText={setCode}
+          placeholder="Confirmation code"
           placeholderTextColor="#6B7280"
-          autoCapitalize="none"
-          keyboardType="email-address"
-          style={styles.input}
-        />
-        <TextInput
-          value={password}
-          onChangeText={setPassword}
-          placeholder="Password"
-          placeholderTextColor="#6B7280"
-          secureTextEntry
+          keyboardType="number-pad"
           style={styles.input}
         />
         <TouchableOpacity
           style={[styles.button, styles.primary]}
-          onPress={handleSignUp}
+          onPress={handleConfirm}
           disabled={loading}
         >
-          <Text style={styles.buttonText}>{loading ? 'Creating account...' : 'Sign Up'}</Text>
+          <Text style={styles.buttonText}>{loading ? 'Confirming...' : 'Confirm'}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.secondary]} onPress={onSwitchToSignIn}>
-          <Text style={[styles.buttonText, styles.secondaryText]}>Have an account? Sign in</Text>
+        <TouchableOpacity style={[styles.button, styles.secondary]} onPress={handleResend}>
+          <Text style={[styles.buttonText, styles.secondaryText]}>Resend Code</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.secondary]} onPress={onBack}>
+          <Text style={[styles.buttonText, styles.secondaryText]}>Back to Sign In</Text>
         </TouchableOpacity>
         {error ? <Text style={styles.error}>{error}</Text> : null}
         {success ? <Text style={styles.success}>{success}</Text> : null}
@@ -108,7 +89,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: '700',
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#6B7280',
     marginBottom: 24,
+    textAlign: 'center',
   },
   input: {
     width: '100%',
