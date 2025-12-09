@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { DeviceEventEmitter, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { client } from '../../lib/dataClient';
+import { client } from '../../../lib/dataClient';
 
 type Project = {
   name: string;
