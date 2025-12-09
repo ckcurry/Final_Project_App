@@ -6,7 +6,7 @@ import Community from './screens/community/Community';
 import Personal from './screens/personal/Personal';
 import TasksPage from './screens/tasks/TasksPage';
 import ProjectsPage from './screens/home/pages/ProjectsPage';
-import './src/awsConfig';
+import './awsConfig';
 
 
 type Page = {
