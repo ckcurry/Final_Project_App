@@ -5,6 +5,9 @@ import Home from './screens/home/Home';
 import Community from './screens/community/Community';
 import Personal from './screens/personal/Personal';
 import TasksPage from './screens/tasks/TasksPage';
+import ProjectsPage from './screens/home/pages/ProjectsPage';
+import './src/awsConfig';
+
 
 type Page = {
   key: 'community' | 'home' | 'personal';
@@ -42,6 +45,7 @@ export default function App() {
   const { width } = useWindowDimensions();
   const scrollRef = useRef<ScrollView>(null);
   const [showTasksModal, setShowTasksModal] = useState(false);
+  const [showProjectsModal, setShowProjectsModal] = useState(false);
 
   const pageIndex = useCallback((key: Page['key']) => pages.findIndex((p) => p.key === key), []);
   const goToPage = useCallback(
@@ -78,14 +82,23 @@ export default function App() {
               { width, backgroundColor: page.background },
             ]}
           >
-            <Text style={[styles.label, { color: page.accent }]}>
-              {page.key.toUpperCase()}
-            </Text>
-            <Text style={[styles.title, { color: page.accent }]}>{page.title}</Text>
-            <Text style={styles.subtitle}>{page.subtitle}</Text>
+            {page.key !== 'home' && (
+              <>
+                <Text style={[styles.label, { color: page.accent }]}>
+                  {page.key.toUpperCase()}
+                </Text>
+                <Text style={[styles.title, { color: page.accent }]}>{page.title}</Text>
+                <Text style={styles.subtitle}>{page.subtitle}</Text>
+              </>
+            )}
 
             {page.key === 'community' && <Community />}
-            {page.key === 'home' && <Home onGoTasks={() => setShowTasksModal(true)} />}
+            {page.key === 'home' && (
+              <Home
+                onGoTasks={() => setShowTasksModal(true)}
+                onGoProjects={() => setShowProjectsModal(true)}
+              />
+            )}
             {page.key === 'personal' && <Personal />}
           </View>
         ))}
@@ -100,6 +113,21 @@ export default function App() {
           <TasksPage
             onGoHome={() => {
               setShowTasksModal(false);
+              goToPage('home');
+            }}
+          />
+        </View>
+      </Modal>
+
+      <Modal
+        visible={showProjectsModal}
+        animationType="slide"
+        onRequestClose={() => setShowProjectsModal(false)}
+      >
+        <View style={styles.modalWrapper}>
+          <ProjectsPage
+            onGoHome={() => {
+              setShowProjectsModal(false);
               goToPage('home');
             }}
           />
