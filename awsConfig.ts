@@ -1,8 +1,7 @@
 import { Amplify } from 'aws-amplify';
-import { loadAmplifyConfig } from '@aws-amplify/react-native';
 import outputs from './amplify_outputs.json';
 
-loadAmplifyConfig();
+// Configure Amplify once on app startup so Auth calls have the necessary endpoints.
 Amplify.configure(outputs);
 
 export default Amplify;

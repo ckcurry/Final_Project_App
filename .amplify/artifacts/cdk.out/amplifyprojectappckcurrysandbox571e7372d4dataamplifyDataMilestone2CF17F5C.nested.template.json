@@ -1,0 +1,2221 @@
+{
+ "Parameters": {
+  "DynamoDBModelTableReadIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of read IOPS the table should support."
+  },
+  "DynamoDBModelTableWriteIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of write IOPS the table should support."
+  },
+  "DynamoDBBillingMode": {
+   "Type": "String",
+   "Default": "PAY_PER_REQUEST",
+   "AllowedValues": [
+    "PAY_PER_REQUEST",
+    "PROVISIONED"
+   ],
+   "Description": "Configure @model types to create DynamoDB tables with PAY_PER_REQUEST or PROVISIONED billing modes."
+  },
+  "DynamoDBEnablePointInTimeRecovery": {
+   "Type": "String",
+   "Default": "false",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Whether to enable Point in Time Recovery on the table."
+  },
+  "DynamoDBEnableServerSideEncryption": {
+   "Type": "String",
+   "Default": "true",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Enable server side encryption powered by KMS."
+  },
+  "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource2A9B87F8Outputsamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataAmplifyTableManagerTableManagerCus3FA152F9": {
+   "Type": "String"
+  },
+  "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId": {
+   "Type": "String"
+  },
+  "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name": {
+   "Type": "String"
+  },
+  "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref": {
+   "Type": "String"
+  },
+  "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref": {
+   "Type": "String"
+  },
+  "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref": {
+   "Type": "String"
+  }
+ },
+ "Conditions": {
+  "HasEnvironmentParameter": {
+   "Fn::Not": [
+    {
+     "Fn::Equals": [
+      "NONE",
+      "NONE"
+     ]
+    }
+   ]
+  },
+  "ShouldUsePayPerRequestBilling": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBBillingMode"
+    },
+    "PAY_PER_REQUEST"
+   ]
+  },
+  "ShouldUsePointInTimeRecovery": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBEnablePointInTimeRecovery"
+    },
+    "true"
+   ]
+  },
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Resources": {
+  "MilestoneTable": {
+   "Type": "Custom::AmplifyDynamoDBTable",
+   "Properties": {
+    "ServiceToken": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource2A9B87F8Outputsamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataAmplifyTableManagerTableManagerCus3FA152F9"
+    },
+    "tableName": {
+     "Fn::Join": [
+      "",
+      [
+       "Milestone-",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "attributeDefinitions": [
+     {
+      "attributeName": "id",
+      "attributeType": "S"
+     },
+     {
+      "attributeName": "projectId",
+      "attributeType": "S"
+     }
+    ],
+    "keySchema": [
+     {
+      "attributeName": "id",
+      "keyType": "HASH"
+     }
+    ],
+    "globalSecondaryIndexes": [
+     {
+      "indexName": "gsi-Project.milestones",
+      "keySchema": [
+       {
+        "attributeName": "projectId",
+        "keyType": "HASH"
+       }
+      ],
+      "projection": {
+       "projectionType": "ALL"
+      },
+      "provisionedThroughput": {
+       "Fn::If": [
+        "ShouldUsePayPerRequestBilling",
+        {
+         "Ref": "AWS::NoValue"
+        },
+        {
+         "ReadCapacityUnits": {
+          "Ref": "DynamoDBModelTableReadIOPS"
+         },
+         "WriteCapacityUnits": {
+          "Ref": "DynamoDBModelTableWriteIOPS"
+         }
+        }
+       ]
+      }
+     }
+    ],
+    "provisionedThroughput": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      {
+       "Ref": "AWS::NoValue"
+      },
+      {
+       "ReadCapacityUnits": {
+        "Ref": "DynamoDBModelTableReadIOPS"
+       },
+       "WriteCapacityUnits": {
+        "Ref": "DynamoDBModelTableWriteIOPS"
+       }
+      }
+     ]
+    },
+    "sseSpecification": {
+     "sseEnabled": false
+    },
+    "streamSpecification": {
+     "streamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "deletionProtectionEnabled": false,
+    "allowDestructiveGraphqlSchemaUpdates": true,
+    "replaceTableUponGsiUpdate": true,
+    "pointInTimeRecoverySpecification": {
+     "Fn::If": [
+      "ShouldUsePointInTimeRecovery",
+      {
+       "PointInTimeRecoveryEnabled": true
+      },
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    },
+    "billingMode": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      "PAY_PER_REQUEST",
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MilestoneTable/Default/Default"
+   }
+  },
+  "MilestoneIAMRole5DA885D0": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Policies": [
+     {
+      "PolicyDocument": {
+       "Statement": [
+        {
+         "Action": [
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:GetItem",
+          "dynamodb:Scan",
+          "dynamodb:Query",
+          "dynamodb:UpdateItem",
+          "dynamodb:ConditionCheckItem",
+          "dynamodb:DescribeTable",
+          "dynamodb:GetRecords",
+          "dynamodb:GetShardIterator"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "Milestone-",
+                {
+                 "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          },
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}/*",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "Milestone-",
+                {
+                 "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ],
+       "Version": "2012-10-17"
+      },
+      "PolicyName": "DynamoDBAccess"
+     }
+    ],
+    "RoleName": {
+     "Fn::Join": [
+      "",
+      [
+       "MilestoneIAMRole7f1012-",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MilestoneIAMRole/Resource"
+   }
+  },
+  "MilestoneDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DynamoDBConfig": {
+     "AwsRegion": {
+      "Ref": "AWS::Region"
+     },
+     "TableName": {
+      "Fn::Select": [
+       1,
+       {
+        "Fn::Split": [
+         "/",
+         {
+          "Fn::Select": [
+           5,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::GetAtt": [
+               "MilestoneTable",
+               "TableArn"
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    "Name": "MilestoneTable",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "MilestoneIAMRole5DA885D0",
+      "Arn"
+     ]
+    },
+    "Type": "AMAZON_DYNAMODB"
+   },
+   "DependsOn": [
+    "MilestoneIAMRole5DA885D0"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MilestoneDataSource/Resource"
+   }
+  },
+  "QuerygetMilestoneauth0FunctionQuerygetMilestoneauth0FunctionAppSyncFunctionE13C4F19": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetMilestoneauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6b25c9b572c67e0f7ad41cb8019a90825f3db4b02a0a15b837c7a82dcb302060.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/QuerygetMilestoneauth0Function/QuerygetMilestoneauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerygetMilestonepostAuth0FunctionQuerygetMilestonepostAuth0FunctionAppSyncFunction0943D16B": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetMilestonepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/QuerygetMilestonepostAuth0Function/QuerygetMilestonepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryGetMilestoneDataResolverFnQueryGetMilestoneDataResolverFnAppSyncFunctionBA8DB1E2": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "MilestoneDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryGetMilestoneDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/08f4d557693d96c1a4efba0f9dc91330e4b19772fd5477c156468843e3d9cb5e.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4c6a2d29f01c6091bd1d9afe16e5849d456c96f17c3b215938c8067399532719.vtl"
+    }
+   },
+   "DependsOn": [
+    "MilestoneDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/QueryGetMilestoneDataResolverFn/QueryGetMilestoneDataResolverFn.AppSyncFunction"
+   }
+  },
+  "GetMilestoneResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "getMilestone",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerygetMilestoneauth0FunctionQuerygetMilestoneauth0FunctionAppSyncFunctionE13C4F19",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerygetMilestonepostAuth0FunctionQuerygetMilestonepostAuth0FunctionAppSyncFunction0943D16B",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryGetMilestoneDataResolverFnQueryGetMilestoneDataResolverFnAppSyncFunctionBA8DB1E2",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getMilestone\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "MilestoneTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/queryGetMilestoneResolver"
+   }
+  },
+  "QuerylistMilestonesauth0FunctionQuerylistMilestonesauth0FunctionAppSyncFunctionADF7E05E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistMilestonesauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6b25c9b572c67e0f7ad41cb8019a90825f3db4b02a0a15b837c7a82dcb302060.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/QuerylistMilestonesauth0Function/QuerylistMilestonesauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistMilestonespostAuth0FunctionQuerylistMilestonespostAuth0FunctionAppSyncFunctionA439D796": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistMilestonespostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/QuerylistMilestonespostAuth0Function/QuerylistMilestonespostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryListMilestonesDataResolverFnQueryListMilestonesDataResolverFnAppSyncFunctionEE6E9181": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "MilestoneDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryListMilestonesDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9fcbe070ecd3023c5bf5b966fa9584757db9762eef123bad0820bd87591b2174.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cc01911d0269d4080ea57505dc445dfc315ef7ad85d3d9d4ea1357858bff451d.vtl"
+    }
+   },
+   "DependsOn": [
+    "MilestoneDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/QueryListMilestonesDataResolverFn/QueryListMilestonesDataResolverFn.AppSyncFunction"
+   }
+  },
+  "ListMilestoneResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "listMilestones",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerylistMilestonesauth0FunctionQuerylistMilestonesauth0FunctionAppSyncFunctionADF7E05E",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistMilestonespostAuth0FunctionQuerylistMilestonespostAuth0FunctionAppSyncFunctionA439D796",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryListMilestonesDataResolverFnQueryListMilestonesDataResolverFnAppSyncFunctionEE6E9181",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listMilestones\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "MilestoneTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/queryListMilestonesResolver"
+   }
+  },
+  "MutationcreateMilestoneinit0FunctionMutationcreateMilestoneinit0FunctionAppSyncFunctionDBFD2801": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateMilestoneinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a183ddccbd956316c38ef97177b8f088ef0826f62023323f5ae6053d348ccffc.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MutationcreateMilestoneinit0Function/MutationcreateMilestoneinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateMilestoneauth0FunctionMutationcreateMilestoneauth0FunctionAppSyncFunctionEDEE6E0A": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateMilestoneauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/bfc09bf07901ad3032a88fc8992436c144ac6889e0d7ff793cf3aaab39dd0066.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MutationcreateMilestoneauth0Function/MutationcreateMilestoneauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateMilestonepostAuth0FunctionMutationcreateMilestonepostAuth0FunctionAppSyncFunction28A055F5": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateMilestonepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MutationcreateMilestonepostAuth0Function/MutationcreateMilestonepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationCreateMilestoneDataResolverFnMutationCreateMilestoneDataResolverFnAppSyncFunctionCB2041F5": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "MilestoneDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationCreateMilestoneDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9b5205f5f6c48c9fc93a7cda40501ffdd1b5da7d157b392a1ca0a18b075f4617.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "MilestoneDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MutationCreateMilestoneDataResolverFn/MutationCreateMilestoneDataResolverFn.AppSyncFunction"
+   }
+  },
+  "CreateMilestoneResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "createMilestone",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationcreateMilestoneinit0FunctionMutationcreateMilestoneinit0FunctionAppSyncFunctionDBFD2801",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateMilestoneauth0FunctionMutationcreateMilestoneauth0FunctionAppSyncFunctionEDEE6E0A",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateMilestonepostAuth0FunctionMutationcreateMilestonepostAuth0FunctionAppSyncFunction28A055F5",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationCreateMilestoneDataResolverFnMutationCreateMilestoneDataResolverFnAppSyncFunctionCB2041F5",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createMilestone\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "MilestoneTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/mutationCreateMilestoneResolver"
+   }
+  },
+  "MutationupdateMilestoneinit0FunctionMutationupdateMilestoneinit0FunctionAppSyncFunction6BAD2CD2": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateMilestoneinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/06db846fd14e6fc371f22b12b5545ba8e2dbfeda85d8c8d586c71c282166657b.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MutationupdateMilestoneinit0Function/MutationupdateMilestoneinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateMilestoneauth0FunctionMutationupdateMilestoneauth0FunctionAppSyncFunction76CA6E89": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "MilestoneDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateMilestoneauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/39ff0846cfcee4a1ddfa2b63a1556e4ecf70df39c9a1a16ca97f696d0cfaef82.vtl"
+    }
+   },
+   "DependsOn": [
+    "MilestoneDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MutationupdateMilestoneauth0Function/MutationupdateMilestoneauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateMilestonepostAuth0FunctionMutationupdateMilestonepostAuth0FunctionAppSyncFunction7817155D": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateMilestonepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MutationupdateMilestonepostAuth0Function/MutationupdateMilestonepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationUpdateMilestoneDataResolverFnMutationUpdateMilestoneDataResolverFnAppSyncFunction76A4E95E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "MilestoneDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationUpdateMilestoneDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/474bf0776ec2164a13191d1a0a9e057154931e4918fea5086f49850d02a5371b.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "MilestoneDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MutationUpdateMilestoneDataResolverFn/MutationUpdateMilestoneDataResolverFn.AppSyncFunction"
+   }
+  },
+  "UpdateMilestoneResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "updateMilestone",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationupdateMilestoneinit0FunctionMutationupdateMilestoneinit0FunctionAppSyncFunction6BAD2CD2",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateMilestoneauth0FunctionMutationupdateMilestoneauth0FunctionAppSyncFunction76CA6E89",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateMilestonepostAuth0FunctionMutationupdateMilestonepostAuth0FunctionAppSyncFunction7817155D",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationUpdateMilestoneDataResolverFnMutationUpdateMilestoneDataResolverFnAppSyncFunction76A4E95E",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateMilestone\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "MilestoneTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/mutationUpdateMilestoneResolver"
+   }
+  },
+  "MutationdeleteMilestoneauth0FunctionMutationdeleteMilestoneauth0FunctionAppSyncFunction257CCD37": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "MilestoneDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteMilestoneauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/867fb7d7eb8e4127b6d0136b82c5c3f74a52eb410297086859986f8e7e4b02aa.vtl"
+    }
+   },
+   "DependsOn": [
+    "MilestoneDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MutationdeleteMilestoneauth0Function/MutationdeleteMilestoneauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationdeleteMilestonepostAuth0FunctionMutationdeleteMilestonepostAuth0FunctionAppSyncFunctionAE018BD9": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteMilestonepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MutationdeleteMilestonepostAuth0Function/MutationdeleteMilestonepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationDeleteMilestoneDataResolverFnMutationDeleteMilestoneDataResolverFnAppSyncFunction73313E8F": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "MilestoneDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationDeleteMilestoneDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4f7907d1209a2c9953a0c053df402c634e359546d70c7cc5c2e8e21ea734880f.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "MilestoneDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MutationDeleteMilestoneDataResolverFn/MutationDeleteMilestoneDataResolverFn.AppSyncFunction"
+   }
+  },
+  "DeleteMilestoneResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "deleteMilestone",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteMilestoneauth0FunctionMutationdeleteMilestoneauth0FunctionAppSyncFunction257CCD37",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteMilestonepostAuth0FunctionMutationdeleteMilestonepostAuth0FunctionAppSyncFunctionAE018BD9",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationDeleteMilestoneDataResolverFnMutationDeleteMilestoneDataResolverFnAppSyncFunction73313E8F",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteMilestone\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "MilestoneTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/mutationDeleteMilestoneResolver"
+   }
+  },
+  "SubscriptiononCreateMilestoneauth0FunctionSubscriptiononCreateMilestoneauth0FunctionAppSyncFunction620FAE52": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateMilestoneauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3b6d810ef43cdbd93ef462c40b0df0328b89e04f1473a4f82f1178da1f1d5aa0.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/SubscriptiononCreateMilestoneauth0Function/SubscriptiononCreateMilestoneauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateMilestonepostAuth0FunctionSubscriptiononCreateMilestonepostAuth0FunctionAppSyncFunctionB1EC69D0": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateMilestonepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/SubscriptiononCreateMilestonepostAuth0Function/SubscriptiononCreateMilestonepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnCreateMilestoneDataResolverFnSubscriptionOnCreateMilestoneDataResolverFnAppSyncFunction4AB8EB09": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnCreateMilestoneDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/SubscriptionOnCreateMilestoneDataResolverFn/SubscriptionOnCreateMilestoneDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateMilestoneResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "onCreateMilestone",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateMilestoneauth0FunctionSubscriptiononCreateMilestoneauth0FunctionAppSyncFunction620FAE52",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateMilestonepostAuth0FunctionSubscriptiononCreateMilestonepostAuth0FunctionAppSyncFunctionB1EC69D0",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnCreateMilestoneDataResolverFnSubscriptionOnCreateMilestoneDataResolverFnAppSyncFunction4AB8EB09",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateMilestone\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/subscriptionOnCreateMilestoneResolver"
+   }
+  },
+  "SubscriptiononUpdateMilestoneauth0FunctionSubscriptiononUpdateMilestoneauth0FunctionAppSyncFunction2BED16D9": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateMilestoneauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3b6d810ef43cdbd93ef462c40b0df0328b89e04f1473a4f82f1178da1f1d5aa0.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/SubscriptiononUpdateMilestoneauth0Function/SubscriptiononUpdateMilestoneauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateMilestonepostAuth0FunctionSubscriptiononUpdateMilestonepostAuth0FunctionAppSyncFunction2AAC202C": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateMilestonepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/SubscriptiononUpdateMilestonepostAuth0Function/SubscriptiononUpdateMilestonepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnUpdateMilestoneDataResolverFnSubscriptionOnUpdateMilestoneDataResolverFnAppSyncFunction4ADC94CA": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnUpdateMilestoneDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/SubscriptionOnUpdateMilestoneDataResolverFn/SubscriptionOnUpdateMilestoneDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateMilestoneResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "onUpdateMilestone",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateMilestoneauth0FunctionSubscriptiononUpdateMilestoneauth0FunctionAppSyncFunction2BED16D9",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateMilestonepostAuth0FunctionSubscriptiononUpdateMilestonepostAuth0FunctionAppSyncFunction2AAC202C",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnUpdateMilestoneDataResolverFnSubscriptionOnUpdateMilestoneDataResolverFnAppSyncFunction4ADC94CA",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateMilestone\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/subscriptionOnUpdateMilestoneResolver"
+   }
+  },
+  "SubscriptiononDeleteMilestoneauth0FunctionSubscriptiononDeleteMilestoneauth0FunctionAppSyncFunctionF662FD88": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteMilestoneauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3b6d810ef43cdbd93ef462c40b0df0328b89e04f1473a4f82f1178da1f1d5aa0.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/SubscriptiononDeleteMilestoneauth0Function/SubscriptiononDeleteMilestoneauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteMilestonepostAuth0FunctionSubscriptiononDeleteMilestonepostAuth0FunctionAppSyncFunction19C19C48": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteMilestonepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/SubscriptiononDeleteMilestonepostAuth0Function/SubscriptiononDeleteMilestonepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnDeleteMilestoneDataResolverFnSubscriptionOnDeleteMilestoneDataResolverFnAppSyncFunction29484550": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnDeleteMilestoneDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/SubscriptionOnDeleteMilestoneDataResolverFn/SubscriptionOnDeleteMilestoneDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteMilestoneResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "onDeleteMilestone",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteMilestoneauth0FunctionSubscriptiononDeleteMilestoneauth0FunctionAppSyncFunctionF662FD88",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteMilestonepostAuth0FunctionSubscriptiononDeleteMilestonepostAuth0FunctionAppSyncFunction19C19C48",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnDeleteMilestoneDataResolverFnSubscriptionOnDeleteMilestoneDataResolverFnAppSyncFunction29484550",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteMilestone\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/subscriptionOnDeleteMilestoneResolver"
+   }
+  },
+  "MilestoneOwnerDataResolverFnMilestoneOwnerDataResolverFnAppSyncFunctionA78B8A44": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MilestoneOwnerDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/041534e5fd916595f752318f161512d7c7f83b9f2cf32d0f0be381c12253ff68.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/064303962e481067b44300212516363b99aaee539b6bafaf756fdd83ff0b60f0.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/MilestoneOwnerDataResolverFn/MilestoneOwnerDataResolverFn.AppSyncFunction"
+   }
+  },
+  "MilestoneownerResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "owner",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MilestoneOwnerDataResolverFnMilestoneOwnerDataResolverFnAppSyncFunctionA78B8A44",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Milestone\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"owner\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Milestone"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/milestoneOwnerResolver"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WOQW6DQAxFz5L94AroBRpQl20F3UdmxqBJwIPGnkQR4u4VpErV1feTn+xfQFEWkB/wJpl1l2z0HSwfJEquVbQXU/X8hREnUoobVIGdVx/YNCQhRUumSqJh+sOenzPe5LS4O+MUXAff2I10RCHjcYKlCePDDiOtBudZ7mxhqXe97mpUbJ8n/9N7YruVqAL3fkgR90a/n8crxdVIeUIRUoG3LYyUcEz2QroVWDf3M+mc1OzrVnHwPKyGgyM4y8u1eIU8h/xwFu+zmFj9RNA88gd+Rdt6NgEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/Milestone/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Outputs": {
+  "GetAttMilestoneTableStreamArn": {
+   "Description": "Your DynamoDB table StreamArn.",
+   "Value": {
+    "Fn::GetAtt": [
+     "MilestoneTable",
+     "TableStreamArn"
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "GetAtt:MilestoneTable:StreamArn"
+      ]
+     ]
+    }
+   }
+  },
+  "GetAttMilestoneTableName": {
+   "Description": "Your DynamoDB table name.",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "Milestone-",
+      {
+       "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+      },
+      "-NONE"
+     ]
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "GetAtt:MilestoneTable:Name"
+      ]
+     ]
+    }
+   }
+  },
+  "amplifyprojectappckcurrysandbox571e7372d4dataamplifyDataMilestoneMilestoneDataSourceBCC976BDName": {
+   "Value": {
+    "Fn::GetAtt": [
+     "MilestoneDataSource",
+     "Name"
+    ]
+   }
+  },
+  "amplifyprojectappckcurrysandbox571e7372d4dataamplifyDataMilestoneMilestoneTableB6FDE03BTableArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "MilestoneTable",
+     "TableArn"
+    ]
+   }
+  }
+ }
+}

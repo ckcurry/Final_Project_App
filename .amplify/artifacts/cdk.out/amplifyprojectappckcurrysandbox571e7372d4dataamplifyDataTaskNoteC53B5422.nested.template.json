@@ -1,0 +1,2221 @@
+{
+ "Parameters": {
+  "DynamoDBModelTableReadIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of read IOPS the table should support."
+  },
+  "DynamoDBModelTableWriteIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of write IOPS the table should support."
+  },
+  "DynamoDBBillingMode": {
+   "Type": "String",
+   "Default": "PAY_PER_REQUEST",
+   "AllowedValues": [
+    "PAY_PER_REQUEST",
+    "PROVISIONED"
+   ],
+   "Description": "Configure @model types to create DynamoDB tables with PAY_PER_REQUEST or PROVISIONED billing modes."
+  },
+  "DynamoDBEnablePointInTimeRecovery": {
+   "Type": "String",
+   "Default": "false",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Whether to enable Point in Time Recovery on the table."
+  },
+  "DynamoDBEnableServerSideEncryption": {
+   "Type": "String",
+   "Default": "true",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Enable server side encryption powered by KMS."
+  },
+  "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource2A9B87F8Outputsamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataAmplifyTableManagerTableManagerCus3FA152F9": {
+   "Type": "String"
+  },
+  "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId": {
+   "Type": "String"
+  },
+  "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name": {
+   "Type": "String"
+  },
+  "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref": {
+   "Type": "String"
+  },
+  "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref": {
+   "Type": "String"
+  },
+  "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref": {
+   "Type": "String"
+  }
+ },
+ "Conditions": {
+  "HasEnvironmentParameter": {
+   "Fn::Not": [
+    {
+     "Fn::Equals": [
+      "NONE",
+      "NONE"
+     ]
+    }
+   ]
+  },
+  "ShouldUsePayPerRequestBilling": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBBillingMode"
+    },
+    "PAY_PER_REQUEST"
+   ]
+  },
+  "ShouldUsePointInTimeRecovery": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBEnablePointInTimeRecovery"
+    },
+    "true"
+   ]
+  },
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Resources": {
+  "TaskNoteTable": {
+   "Type": "Custom::AmplifyDynamoDBTable",
+   "Properties": {
+    "ServiceToken": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource2A9B87F8Outputsamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataAmplifyTableManagerTableManagerCus3FA152F9"
+    },
+    "tableName": {
+     "Fn::Join": [
+      "",
+      [
+       "TaskNote-",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "attributeDefinitions": [
+     {
+      "attributeName": "id",
+      "attributeType": "S"
+     },
+     {
+      "attributeName": "taskId",
+      "attributeType": "S"
+     }
+    ],
+    "keySchema": [
+     {
+      "attributeName": "id",
+      "keyType": "HASH"
+     }
+    ],
+    "globalSecondaryIndexes": [
+     {
+      "indexName": "gsi-Task.notes",
+      "keySchema": [
+       {
+        "attributeName": "taskId",
+        "keyType": "HASH"
+       }
+      ],
+      "projection": {
+       "projectionType": "ALL"
+      },
+      "provisionedThroughput": {
+       "Fn::If": [
+        "ShouldUsePayPerRequestBilling",
+        {
+         "Ref": "AWS::NoValue"
+        },
+        {
+         "ReadCapacityUnits": {
+          "Ref": "DynamoDBModelTableReadIOPS"
+         },
+         "WriteCapacityUnits": {
+          "Ref": "DynamoDBModelTableWriteIOPS"
+         }
+        }
+       ]
+      }
+     }
+    ],
+    "provisionedThroughput": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      {
+       "Ref": "AWS::NoValue"
+      },
+      {
+       "ReadCapacityUnits": {
+        "Ref": "DynamoDBModelTableReadIOPS"
+       },
+       "WriteCapacityUnits": {
+        "Ref": "DynamoDBModelTableWriteIOPS"
+       }
+      }
+     ]
+    },
+    "sseSpecification": {
+     "sseEnabled": false
+    },
+    "streamSpecification": {
+     "streamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "deletionProtectionEnabled": false,
+    "allowDestructiveGraphqlSchemaUpdates": true,
+    "replaceTableUponGsiUpdate": true,
+    "pointInTimeRecoverySpecification": {
+     "Fn::If": [
+      "ShouldUsePointInTimeRecovery",
+      {
+       "PointInTimeRecoveryEnabled": true
+      },
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    },
+    "billingMode": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      "PAY_PER_REQUEST",
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/TaskNoteTable/Default/Default"
+   }
+  },
+  "TaskNoteIAMRole8D6ECF5A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Policies": [
+     {
+      "PolicyDocument": {
+       "Statement": [
+        {
+         "Action": [
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:GetItem",
+          "dynamodb:Scan",
+          "dynamodb:Query",
+          "dynamodb:UpdateItem",
+          "dynamodb:ConditionCheckItem",
+          "dynamodb:DescribeTable",
+          "dynamodb:GetRecords",
+          "dynamodb:GetShardIterator"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "TaskNote-",
+                {
+                 "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          },
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}/*",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "TaskNote-",
+                {
+                 "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ],
+       "Version": "2012-10-17"
+      },
+      "PolicyName": "DynamoDBAccess"
+     }
+    ],
+    "RoleName": {
+     "Fn::Join": [
+      "",
+      [
+       "TaskNoteIAMRole3d86f5-",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/TaskNoteIAMRole/Resource"
+   }
+  },
+  "TaskNoteDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DynamoDBConfig": {
+     "AwsRegion": {
+      "Ref": "AWS::Region"
+     },
+     "TableName": {
+      "Fn::Select": [
+       1,
+       {
+        "Fn::Split": [
+         "/",
+         {
+          "Fn::Select": [
+           5,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::GetAtt": [
+               "TaskNoteTable",
+               "TableArn"
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    "Name": "TaskNoteTable",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "TaskNoteIAMRole8D6ECF5A",
+      "Arn"
+     ]
+    },
+    "Type": "AMAZON_DYNAMODB"
+   },
+   "DependsOn": [
+    "TaskNoteIAMRole8D6ECF5A"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/TaskNoteDataSource/Resource"
+   }
+  },
+  "QuerygetTaskNoteauth0FunctionQuerygetTaskNoteauth0FunctionAppSyncFunction707DC644": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetTaskNoteauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6b25c9b572c67e0f7ad41cb8019a90825f3db4b02a0a15b837c7a82dcb302060.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/QuerygetTaskNoteauth0Function/QuerygetTaskNoteauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerygetTaskNotepostAuth0FunctionQuerygetTaskNotepostAuth0FunctionAppSyncFunction8E9A2F00": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetTaskNotepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/QuerygetTaskNotepostAuth0Function/QuerygetTaskNotepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryGetTaskNoteDataResolverFnQueryGetTaskNoteDataResolverFnAppSyncFunctionC11C5C01": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "TaskNoteDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryGetTaskNoteDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/08f4d557693d96c1a4efba0f9dc91330e4b19772fd5477c156468843e3d9cb5e.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4c6a2d29f01c6091bd1d9afe16e5849d456c96f17c3b215938c8067399532719.vtl"
+    }
+   },
+   "DependsOn": [
+    "TaskNoteDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/QueryGetTaskNoteDataResolverFn/QueryGetTaskNoteDataResolverFn.AppSyncFunction"
+   }
+  },
+  "GetTaskNoteResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "getTaskNote",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerygetTaskNoteauth0FunctionQuerygetTaskNoteauth0FunctionAppSyncFunction707DC644",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerygetTaskNotepostAuth0FunctionQuerygetTaskNotepostAuth0FunctionAppSyncFunction8E9A2F00",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryGetTaskNoteDataResolverFnQueryGetTaskNoteDataResolverFnAppSyncFunctionC11C5C01",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getTaskNote\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "TaskNoteTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/queryGetTaskNoteResolver"
+   }
+  },
+  "QuerylistTaskNotesauth0FunctionQuerylistTaskNotesauth0FunctionAppSyncFunctionE6B19E58": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistTaskNotesauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6b25c9b572c67e0f7ad41cb8019a90825f3db4b02a0a15b837c7a82dcb302060.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/QuerylistTaskNotesauth0Function/QuerylistTaskNotesauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistTaskNotespostAuth0FunctionQuerylistTaskNotespostAuth0FunctionAppSyncFunction69EC5A50": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistTaskNotespostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/QuerylistTaskNotespostAuth0Function/QuerylistTaskNotespostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryListTaskNotesDataResolverFnQueryListTaskNotesDataResolverFnAppSyncFunction7FFAE443": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "TaskNoteDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryListTaskNotesDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9fcbe070ecd3023c5bf5b966fa9584757db9762eef123bad0820bd87591b2174.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cc01911d0269d4080ea57505dc445dfc315ef7ad85d3d9d4ea1357858bff451d.vtl"
+    }
+   },
+   "DependsOn": [
+    "TaskNoteDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/QueryListTaskNotesDataResolverFn/QueryListTaskNotesDataResolverFn.AppSyncFunction"
+   }
+  },
+  "ListTaskNoteResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "listTaskNotes",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerylistTaskNotesauth0FunctionQuerylistTaskNotesauth0FunctionAppSyncFunctionE6B19E58",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistTaskNotespostAuth0FunctionQuerylistTaskNotespostAuth0FunctionAppSyncFunction69EC5A50",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryListTaskNotesDataResolverFnQueryListTaskNotesDataResolverFnAppSyncFunction7FFAE443",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listTaskNotes\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "TaskNoteTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/queryListTaskNotesResolver"
+   }
+  },
+  "MutationcreateTaskNoteinit0FunctionMutationcreateTaskNoteinit0FunctionAppSyncFunction36C3DE53": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateTaskNoteinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a183ddccbd956316c38ef97177b8f088ef0826f62023323f5ae6053d348ccffc.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/MutationcreateTaskNoteinit0Function/MutationcreateTaskNoteinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateTaskNoteauth0FunctionMutationcreateTaskNoteauth0FunctionAppSyncFunction02CEC8E0": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateTaskNoteauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/962846423be8f3133fd8921ad4dff4dc122fefb150e38a639da255e6deebbe93.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/MutationcreateTaskNoteauth0Function/MutationcreateTaskNoteauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateTaskNotepostAuth0FunctionMutationcreateTaskNotepostAuth0FunctionAppSyncFunctionF3E9BE18": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateTaskNotepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/MutationcreateTaskNotepostAuth0Function/MutationcreateTaskNotepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationCreateTaskNoteDataResolverFnMutationCreateTaskNoteDataResolverFnAppSyncFunction0FC2886E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "TaskNoteDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationCreateTaskNoteDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1af706a8ca908284878a5c28ad5c5fae8d0db6c3f77932aab01ca1bcd5f2b85b.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "TaskNoteDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/MutationCreateTaskNoteDataResolverFn/MutationCreateTaskNoteDataResolverFn.AppSyncFunction"
+   }
+  },
+  "CreateTaskNoteResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "createTaskNote",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationcreateTaskNoteinit0FunctionMutationcreateTaskNoteinit0FunctionAppSyncFunction36C3DE53",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateTaskNoteauth0FunctionMutationcreateTaskNoteauth0FunctionAppSyncFunction02CEC8E0",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateTaskNotepostAuth0FunctionMutationcreateTaskNotepostAuth0FunctionAppSyncFunctionF3E9BE18",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationCreateTaskNoteDataResolverFnMutationCreateTaskNoteDataResolverFnAppSyncFunction0FC2886E",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createTaskNote\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "TaskNoteTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/mutationCreateTaskNoteResolver"
+   }
+  },
+  "MutationupdateTaskNoteinit0FunctionMutationupdateTaskNoteinit0FunctionAppSyncFunction378F8853": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateTaskNoteinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/06db846fd14e6fc371f22b12b5545ba8e2dbfeda85d8c8d586c71c282166657b.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/MutationupdateTaskNoteinit0Function/MutationupdateTaskNoteinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateTaskNoteauth0FunctionMutationupdateTaskNoteauth0FunctionAppSyncFunctionCDB2E36D": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "TaskNoteDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateTaskNoteauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/918888052e6fb7860a8d633143b7912b0bec3b371a9f593611100dca523e46c8.vtl"
+    }
+   },
+   "DependsOn": [
+    "TaskNoteDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/MutationupdateTaskNoteauth0Function/MutationupdateTaskNoteauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateTaskNotepostAuth0FunctionMutationupdateTaskNotepostAuth0FunctionAppSyncFunction5B61966D": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateTaskNotepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/MutationupdateTaskNotepostAuth0Function/MutationupdateTaskNotepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationUpdateTaskNoteDataResolverFnMutationUpdateTaskNoteDataResolverFnAppSyncFunction2E69277D": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "TaskNoteDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationUpdateTaskNoteDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/474bf0776ec2164a13191d1a0a9e057154931e4918fea5086f49850d02a5371b.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "TaskNoteDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/MutationUpdateTaskNoteDataResolverFn/MutationUpdateTaskNoteDataResolverFn.AppSyncFunction"
+   }
+  },
+  "UpdateTaskNoteResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "updateTaskNote",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationupdateTaskNoteinit0FunctionMutationupdateTaskNoteinit0FunctionAppSyncFunction378F8853",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateTaskNoteauth0FunctionMutationupdateTaskNoteauth0FunctionAppSyncFunctionCDB2E36D",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateTaskNotepostAuth0FunctionMutationupdateTaskNotepostAuth0FunctionAppSyncFunction5B61966D",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationUpdateTaskNoteDataResolverFnMutationUpdateTaskNoteDataResolverFnAppSyncFunction2E69277D",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateTaskNote\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "TaskNoteTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/mutationUpdateTaskNoteResolver"
+   }
+  },
+  "MutationdeleteTaskNoteauth0FunctionMutationdeleteTaskNoteauth0FunctionAppSyncFunctionB3610AFD": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "TaskNoteDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteTaskNoteauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/867fb7d7eb8e4127b6d0136b82c5c3f74a52eb410297086859986f8e7e4b02aa.vtl"
+    }
+   },
+   "DependsOn": [
+    "TaskNoteDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/MutationdeleteTaskNoteauth0Function/MutationdeleteTaskNoteauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationdeleteTaskNotepostAuth0FunctionMutationdeleteTaskNotepostAuth0FunctionAppSyncFunctionDEB903B5": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteTaskNotepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/MutationdeleteTaskNotepostAuth0Function/MutationdeleteTaskNotepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationDeleteTaskNoteDataResolverFnMutationDeleteTaskNoteDataResolverFnAppSyncFunctionA602ECBB": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "TaskNoteDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationDeleteTaskNoteDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4f7907d1209a2c9953a0c053df402c634e359546d70c7cc5c2e8e21ea734880f.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "TaskNoteDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/MutationDeleteTaskNoteDataResolverFn/MutationDeleteTaskNoteDataResolverFn.AppSyncFunction"
+   }
+  },
+  "DeleteTaskNoteResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "deleteTaskNote",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteTaskNoteauth0FunctionMutationdeleteTaskNoteauth0FunctionAppSyncFunctionB3610AFD",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteTaskNotepostAuth0FunctionMutationdeleteTaskNotepostAuth0FunctionAppSyncFunctionDEB903B5",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationDeleteTaskNoteDataResolverFnMutationDeleteTaskNoteDataResolverFnAppSyncFunctionA602ECBB",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteTaskNote\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "TaskNoteTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/mutationDeleteTaskNoteResolver"
+   }
+  },
+  "SubscriptiononCreateTaskNoteauth0FunctionSubscriptiononCreateTaskNoteauth0FunctionAppSyncFunction953FE997": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateTaskNoteauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3b6d810ef43cdbd93ef462c40b0df0328b89e04f1473a4f82f1178da1f1d5aa0.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/SubscriptiononCreateTaskNoteauth0Function/SubscriptiononCreateTaskNoteauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateTaskNotepostAuth0FunctionSubscriptiononCreateTaskNotepostAuth0FunctionAppSyncFunctionCE6EAD3E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateTaskNotepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/SubscriptiononCreateTaskNotepostAuth0Function/SubscriptiononCreateTaskNotepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnCreateTaskNoteDataResolverFnSubscriptionOnCreateTaskNoteDataResolverFnAppSyncFunction6C275A9E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnCreateTaskNoteDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/SubscriptionOnCreateTaskNoteDataResolverFn/SubscriptionOnCreateTaskNoteDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateTaskNoteResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "onCreateTaskNote",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateTaskNoteauth0FunctionSubscriptiononCreateTaskNoteauth0FunctionAppSyncFunction953FE997",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateTaskNotepostAuth0FunctionSubscriptiononCreateTaskNotepostAuth0FunctionAppSyncFunctionCE6EAD3E",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnCreateTaskNoteDataResolverFnSubscriptionOnCreateTaskNoteDataResolverFnAppSyncFunction6C275A9E",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateTaskNote\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/subscriptionOnCreateTaskNoteResolver"
+   }
+  },
+  "SubscriptiononUpdateTaskNoteauth0FunctionSubscriptiononUpdateTaskNoteauth0FunctionAppSyncFunction5E4BB85D": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateTaskNoteauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3b6d810ef43cdbd93ef462c40b0df0328b89e04f1473a4f82f1178da1f1d5aa0.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/SubscriptiononUpdateTaskNoteauth0Function/SubscriptiononUpdateTaskNoteauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateTaskNotepostAuth0FunctionSubscriptiononUpdateTaskNotepostAuth0FunctionAppSyncFunction27539103": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateTaskNotepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/SubscriptiononUpdateTaskNotepostAuth0Function/SubscriptiononUpdateTaskNotepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnUpdateTaskNoteDataResolverFnSubscriptionOnUpdateTaskNoteDataResolverFnAppSyncFunction96B6CC67": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnUpdateTaskNoteDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/SubscriptionOnUpdateTaskNoteDataResolverFn/SubscriptionOnUpdateTaskNoteDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateTaskNoteResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "onUpdateTaskNote",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateTaskNoteauth0FunctionSubscriptiononUpdateTaskNoteauth0FunctionAppSyncFunction5E4BB85D",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateTaskNotepostAuth0FunctionSubscriptiononUpdateTaskNotepostAuth0FunctionAppSyncFunction27539103",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnUpdateTaskNoteDataResolverFnSubscriptionOnUpdateTaskNoteDataResolverFnAppSyncFunction96B6CC67",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateTaskNote\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/subscriptionOnUpdateTaskNoteResolver"
+   }
+  },
+  "SubscriptiononDeleteTaskNoteauth0FunctionSubscriptiononDeleteTaskNoteauth0FunctionAppSyncFunctionAF1398C9": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteTaskNoteauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3b6d810ef43cdbd93ef462c40b0df0328b89e04f1473a4f82f1178da1f1d5aa0.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/SubscriptiononDeleteTaskNoteauth0Function/SubscriptiononDeleteTaskNoteauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteTaskNotepostAuth0FunctionSubscriptiononDeleteTaskNotepostAuth0FunctionAppSyncFunction095B6AE3": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteTaskNotepostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/SubscriptiononDeleteTaskNotepostAuth0Function/SubscriptiononDeleteTaskNotepostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnDeleteTaskNoteDataResolverFnSubscriptionOnDeleteTaskNoteDataResolverFnAppSyncFunction046A8528": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnDeleteTaskNoteDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/SubscriptionOnDeleteTaskNoteDataResolverFn/SubscriptionOnDeleteTaskNoteDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteTaskNoteResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "onDeleteTaskNote",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteTaskNoteauth0FunctionSubscriptiononDeleteTaskNoteauth0FunctionAppSyncFunctionAF1398C9",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteTaskNotepostAuth0FunctionSubscriptiononDeleteTaskNotepostAuth0FunctionAppSyncFunction095B6AE3",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnDeleteTaskNoteDataResolverFnSubscriptionOnDeleteTaskNoteDataResolverFnAppSyncFunction046A8528",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteTaskNote\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/subscriptionOnDeleteTaskNoteResolver"
+   }
+  },
+  "TaskNoteOwnerDataResolverFnTaskNoteOwnerDataResolverFnAppSyncFunction963F66E4": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPINONEDSD1109DC0Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "TaskNoteOwnerDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/041534e5fd916595f752318f161512d7c7f83b9f2cf32d0f0be381c12253ff68.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/064303962e481067b44300212516363b99aaee539b6bafaf756fdd83ff0b60f0.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/TaskNoteOwnerDataResolverFn/TaskNoteOwnerDataResolverFn.AppSyncFunction"
+   }
+  },
+  "TaskNoteownerResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+    },
+    "FieldName": "owner",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "TaskNoteOwnerDataResolverFnTaskNoteOwnerDataResolverFnAppSyncFunction963F66E4",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"TaskNote\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"owner\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthauthenticatedUserRoleC614D751Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthunauthenticatedUserRole8886D727Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4authNestedStackauthNestedStackResource4E12D2A4Outputsamplifyprojectappckcurrysandbox571e7372d4authamplifyAuthIdentityPool47AAE3D1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "TaskNote"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/taskNoteOwnerResolver"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WOQW6DQAxFz5L94AroBRpQl20F3UdmxqBJwIPGnkQR4u4VpErV1feTn+xfQFEWkB/wJpl1l2z0HSwfJEquVbQXU/X8hREnUoobVIGdVx/YNCQhRUumSqJh+sOenzPe5LS4O+MUXAff2I10RCHjcYKlCePDDiOtBudZ7mxhqXe97mpUbJ8n/9N7YruVqAL3fkgR90a/n8crxdVIeUIRUoG3LYyUcEz2QroVWDf3M+mc1OzrVnHwPKyGgyM4y8u1eIU8h/xwFu+zmFj9RNA88gd+Rdt6NgEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-projectapp-ckcurry-sandbox-571e7372d4/data/amplifyData/TaskNote/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Outputs": {
+  "GetAttTaskNoteTableStreamArn": {
+   "Description": "Your DynamoDB table StreamArn.",
+   "Value": {
+    "Fn::GetAtt": [
+     "TaskNoteTable",
+     "TableStreamArn"
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "GetAtt:TaskNoteTable:StreamArn"
+      ]
+     ]
+    }
+   }
+  },
+  "GetAttTaskNoteTableName": {
+   "Description": "Your DynamoDB table name.",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "TaskNote-",
+      {
+       "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+      },
+      "-NONE"
+     ]
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyprojectappckcurrysandbox571e7372d4dataamplifyDataGraphQLAPIC623CD39ApiId"
+       },
+       "GetAtt:TaskNoteTable:Name"
+      ]
+     ]
+    }
+   }
+  },
+  "amplifyprojectappckcurrysandbox571e7372d4dataamplifyDataTaskNoteTaskNoteDataSource0BE44C8AName": {
+   "Value": {
+    "Fn::GetAtt": [
+     "TaskNoteDataSource",
+     "Name"
+    ]
+   }
+  },
+  "amplifyprojectappckcurrysandbox571e7372d4dataamplifyDataTaskNoteTaskNoteTable199D1ADATableArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "TaskNoteTable",
+     "TableArn"
+    ]
+   }
+  }
+ }
+}

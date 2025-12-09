@@ -1,0 +1,559 @@
+type Task @aws_iam @aws_cognito_user_pools {
+  name: String!
+  dueDate: String!
+  recurrence: String!
+  category: String!
+  notes(filter: ModelTaskNoteFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTaskNoteConnection
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+}
+
+type TaskNote @aws_iam @aws_cognito_user_pools {
+  taskId: ID!
+  task: Task
+  text: String
+  voice: String
+  timestamp: String
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+}
+
+type Project @aws_iam @aws_cognito_user_pools {
+  name: String!
+  milestones(filter: ModelMilestoneFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMilestoneConnection
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+}
+
+type Milestone @aws_iam @aws_cognito_user_pools {
+  projectId: ID!
+  project: Project
+  name: String!
+  footstones(filter: ModelFootstoneFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelFootstoneConnection
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+}
+
+type Footstone @aws_iam @aws_cognito_user_pools {
+  milestoneId: ID!
+  milestone: Milestone
+  name: String!
+  plans: [String]
+  updates: [String]
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+}
+
+input AmplifyAIConversationTurnErrorInput {
+  errorType: String!
+  message: String!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelTaskConnection @aws_iam @aws_cognito_user_pools {
+  items: [Task]!
+  nextToken: String
+}
+
+input ModelTaskFilterInput {
+  name: ModelStringInput
+  dueDate: ModelStringInput
+  recurrence: ModelStringInput
+  category: ModelStringInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelTaskFilterInput]
+  or: [ModelTaskFilterInput]
+  not: ModelTaskFilterInput
+  owner: ModelStringInput
+}
+
+type Query {
+  getTask(id: ID!): Task @aws_iam @aws_cognito_user_pools
+  listTasks(filter: ModelTaskFilterInput, limit: Int, nextToken: String): ModelTaskConnection @aws_iam @aws_cognito_user_pools
+  getTaskNote(id: ID!): TaskNote @aws_iam @aws_cognito_user_pools
+  listTaskNotes(filter: ModelTaskNoteFilterInput, limit: Int, nextToken: String): ModelTaskNoteConnection @aws_iam @aws_cognito_user_pools
+  getProject(id: ID!): Project @aws_iam @aws_cognito_user_pools
+  listProjects(filter: ModelProjectFilterInput, limit: Int, nextToken: String): ModelProjectConnection @aws_iam @aws_cognito_user_pools
+  getMilestone(id: ID!): Milestone @aws_iam @aws_cognito_user_pools
+  listMilestones(filter: ModelMilestoneFilterInput, limit: Int, nextToken: String): ModelMilestoneConnection @aws_iam @aws_cognito_user_pools
+  getFootstone(id: ID!): Footstone @aws_iam @aws_cognito_user_pools
+  listFootstones(filter: ModelFootstoneFilterInput, limit: Int, nextToken: String): ModelFootstoneConnection @aws_iam @aws_cognito_user_pools
+}
+
+input ModelTaskConditionInput {
+  name: ModelStringInput
+  dueDate: ModelStringInput
+  recurrence: ModelStringInput
+  category: ModelStringInput
+  and: [ModelTaskConditionInput]
+  or: [ModelTaskConditionInput]
+  not: ModelTaskConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  owner: ModelStringInput
+}
+
+input CreateTaskInput {
+  name: String!
+  dueDate: String!
+  recurrence: String!
+  category: String!
+  id: ID
+}
+
+input UpdateTaskInput {
+  name: String
+  dueDate: String
+  recurrence: String
+  category: String
+  id: ID!
+}
+
+input DeleteTaskInput {
+  id: ID!
+}
+
+type Mutation {
+  createTask(input: CreateTaskInput!, condition: ModelTaskConditionInput): Task @aws_iam @aws_cognito_user_pools
+  updateTask(input: UpdateTaskInput!, condition: ModelTaskConditionInput): Task @aws_iam @aws_cognito_user_pools
+  deleteTask(input: DeleteTaskInput!, condition: ModelTaskConditionInput): Task @aws_iam @aws_cognito_user_pools
+  createTaskNote(input: CreateTaskNoteInput!, condition: ModelTaskNoteConditionInput): TaskNote @aws_iam @aws_cognito_user_pools
+  updateTaskNote(input: UpdateTaskNoteInput!, condition: ModelTaskNoteConditionInput): TaskNote @aws_iam @aws_cognito_user_pools
+  deleteTaskNote(input: DeleteTaskNoteInput!, condition: ModelTaskNoteConditionInput): TaskNote @aws_iam @aws_cognito_user_pools
+  createProject(input: CreateProjectInput!, condition: ModelProjectConditionInput): Project @aws_iam @aws_cognito_user_pools
+  updateProject(input: UpdateProjectInput!, condition: ModelProjectConditionInput): Project @aws_iam @aws_cognito_user_pools
+  deleteProject(input: DeleteProjectInput!, condition: ModelProjectConditionInput): Project @aws_iam @aws_cognito_user_pools
+  createMilestone(input: CreateMilestoneInput!, condition: ModelMilestoneConditionInput): Milestone @aws_iam @aws_cognito_user_pools
+  updateMilestone(input: UpdateMilestoneInput!, condition: ModelMilestoneConditionInput): Milestone @aws_iam @aws_cognito_user_pools
+  deleteMilestone(input: DeleteMilestoneInput!, condition: ModelMilestoneConditionInput): Milestone @aws_iam @aws_cognito_user_pools
+  createFootstone(input: CreateFootstoneInput!, condition: ModelFootstoneConditionInput): Footstone @aws_iam @aws_cognito_user_pools
+  updateFootstone(input: UpdateFootstoneInput!, condition: ModelFootstoneConditionInput): Footstone @aws_iam @aws_cognito_user_pools
+  deleteFootstone(input: DeleteFootstoneInput!, condition: ModelFootstoneConditionInput): Footstone @aws_iam @aws_cognito_user_pools
+}
+
+input ModelSubscriptionTaskFilterInput {
+  name: ModelSubscriptionStringInput
+  dueDate: ModelSubscriptionStringInput
+  recurrence: ModelSubscriptionStringInput
+  category: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionTaskFilterInput]
+  or: [ModelSubscriptionTaskFilterInput]
+  owner: ModelStringInput
+}
+
+type Subscription {
+  onCreateTask(filter: ModelSubscriptionTaskFilterInput, owner: String): Task @aws_subscribe(mutations: ["createTask"]) @aws_iam @aws_cognito_user_pools
+  onUpdateTask(filter: ModelSubscriptionTaskFilterInput, owner: String): Task @aws_subscribe(mutations: ["updateTask"]) @aws_iam @aws_cognito_user_pools
+  onDeleteTask(filter: ModelSubscriptionTaskFilterInput, owner: String): Task @aws_subscribe(mutations: ["deleteTask"]) @aws_iam @aws_cognito_user_pools
+  onCreateTaskNote(filter: ModelSubscriptionTaskNoteFilterInput, owner: String): TaskNote @aws_subscribe(mutations: ["createTaskNote"]) @aws_iam @aws_cognito_user_pools
+  onUpdateTaskNote(filter: ModelSubscriptionTaskNoteFilterInput, owner: String): TaskNote @aws_subscribe(mutations: ["updateTaskNote"]) @aws_iam @aws_cognito_user_pools
+  onDeleteTaskNote(filter: ModelSubscriptionTaskNoteFilterInput, owner: String): TaskNote @aws_subscribe(mutations: ["deleteTaskNote"]) @aws_iam @aws_cognito_user_pools
+  onCreateProject(filter: ModelSubscriptionProjectFilterInput, owner: String): Project @aws_subscribe(mutations: ["createProject"]) @aws_iam @aws_cognito_user_pools
+  onUpdateProject(filter: ModelSubscriptionProjectFilterInput, owner: String): Project @aws_subscribe(mutations: ["updateProject"]) @aws_iam @aws_cognito_user_pools
+  onDeleteProject(filter: ModelSubscriptionProjectFilterInput, owner: String): Project @aws_subscribe(mutations: ["deleteProject"]) @aws_iam @aws_cognito_user_pools
+  onCreateMilestone(filter: ModelSubscriptionMilestoneFilterInput, owner: String): Milestone @aws_subscribe(mutations: ["createMilestone"]) @aws_iam @aws_cognito_user_pools
+  onUpdateMilestone(filter: ModelSubscriptionMilestoneFilterInput, owner: String): Milestone @aws_subscribe(mutations: ["updateMilestone"]) @aws_iam @aws_cognito_user_pools
+  onDeleteMilestone(filter: ModelSubscriptionMilestoneFilterInput, owner: String): Milestone @aws_subscribe(mutations: ["deleteMilestone"]) @aws_iam @aws_cognito_user_pools
+  onCreateFootstone(filter: ModelSubscriptionFootstoneFilterInput, owner: String): Footstone @aws_subscribe(mutations: ["createFootstone"]) @aws_iam @aws_cognito_user_pools
+  onUpdateFootstone(filter: ModelSubscriptionFootstoneFilterInput, owner: String): Footstone @aws_subscribe(mutations: ["updateFootstone"]) @aws_iam @aws_cognito_user_pools
+  onDeleteFootstone(filter: ModelSubscriptionFootstoneFilterInput, owner: String): Footstone @aws_subscribe(mutations: ["deleteFootstone"]) @aws_iam @aws_cognito_user_pools
+}
+
+type ModelTaskNoteConnection @aws_iam @aws_cognito_user_pools {
+  items: [TaskNote]!
+  nextToken: String
+}
+
+input ModelTaskNoteFilterInput {
+  taskId: ModelIDInput
+  text: ModelStringInput
+  voice: ModelStringInput
+  timestamp: ModelStringInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelTaskNoteFilterInput]
+  or: [ModelTaskNoteFilterInput]
+  not: ModelTaskNoteFilterInput
+  owner: ModelStringInput
+}
+
+input ModelTaskNoteConditionInput {
+  taskId: ModelIDInput
+  text: ModelStringInput
+  voice: ModelStringInput
+  timestamp: ModelStringInput
+  and: [ModelTaskNoteConditionInput]
+  or: [ModelTaskNoteConditionInput]
+  not: ModelTaskNoteConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  owner: ModelStringInput
+}
+
+input CreateTaskNoteInput {
+  taskId: ID!
+  text: String
+  voice: String
+  timestamp: String
+  id: ID
+}
+
+input UpdateTaskNoteInput {
+  taskId: ID
+  text: String
+  voice: String
+  timestamp: String
+  id: ID!
+}
+
+input DeleteTaskNoteInput {
+  id: ID!
+}
+
+input ModelSubscriptionTaskNoteFilterInput {
+  taskId: ModelSubscriptionIDInput
+  text: ModelSubscriptionStringInput
+  voice: ModelSubscriptionStringInput
+  timestamp: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionTaskNoteFilterInput]
+  or: [ModelSubscriptionTaskNoteFilterInput]
+  owner: ModelStringInput
+}
+
+type ModelProjectConnection @aws_iam @aws_cognito_user_pools {
+  items: [Project]!
+  nextToken: String
+}
+
+input ModelProjectFilterInput {
+  name: ModelStringInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelProjectFilterInput]
+  or: [ModelProjectFilterInput]
+  not: ModelProjectFilterInput
+  owner: ModelStringInput
+}
+
+input ModelProjectConditionInput {
+  name: ModelStringInput
+  and: [ModelProjectConditionInput]
+  or: [ModelProjectConditionInput]
+  not: ModelProjectConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  owner: ModelStringInput
+}
+
+input CreateProjectInput {
+  name: String!
+  id: ID
+}
+
+input UpdateProjectInput {
+  name: String
+  id: ID!
+}
+
+input DeleteProjectInput {
+  id: ID!
+}
+
+input ModelSubscriptionProjectFilterInput {
+  name: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionProjectFilterInput]
+  or: [ModelSubscriptionProjectFilterInput]
+  owner: ModelStringInput
+}
+
+type ModelMilestoneConnection @aws_iam @aws_cognito_user_pools {
+  items: [Milestone]!
+  nextToken: String
+}
+
+input ModelMilestoneFilterInput {
+  projectId: ModelIDInput
+  name: ModelStringInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelMilestoneFilterInput]
+  or: [ModelMilestoneFilterInput]
+  not: ModelMilestoneFilterInput
+  owner: ModelStringInput
+}
+
+input ModelMilestoneConditionInput {
+  projectId: ModelIDInput
+  name: ModelStringInput
+  and: [ModelMilestoneConditionInput]
+  or: [ModelMilestoneConditionInput]
+  not: ModelMilestoneConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  owner: ModelStringInput
+}
+
+input CreateMilestoneInput {
+  projectId: ID!
+  name: String!
+  id: ID
+}
+
+input UpdateMilestoneInput {
+  projectId: ID
+  name: String
+  id: ID!
+}
+
+input DeleteMilestoneInput {
+  id: ID!
+}
+
+input ModelSubscriptionMilestoneFilterInput {
+  projectId: ModelSubscriptionIDInput
+  name: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionMilestoneFilterInput]
+  or: [ModelSubscriptionMilestoneFilterInput]
+  owner: ModelStringInput
+}
+
+type ModelFootstoneConnection @aws_iam @aws_cognito_user_pools {
+  items: [Footstone]!
+  nextToken: String
+}
+
+input ModelFootstoneFilterInput {
+  milestoneId: ModelIDInput
+  name: ModelStringInput
+  plans: ModelStringInput
+  updates: ModelStringInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelFootstoneFilterInput]
+  or: [ModelFootstoneFilterInput]
+  not: ModelFootstoneFilterInput
+  owner: ModelStringInput
+}
+
+input ModelFootstoneConditionInput {
+  milestoneId: ModelIDInput
+  name: ModelStringInput
+  plans: ModelStringInput
+  updates: ModelStringInput
+  and: [ModelFootstoneConditionInput]
+  or: [ModelFootstoneConditionInput]
+  not: ModelFootstoneConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  owner: ModelStringInput
+}
+
+input CreateFootstoneInput {
+  milestoneId: ID!
+  name: String!
+  plans: [String]
+  updates: [String]
+  id: ID
+}
+
+input UpdateFootstoneInput {
+  milestoneId: ID
+  name: String
+  plans: [String]
+  updates: [String]
+  id: ID!
+}
+
+input DeleteFootstoneInput {
+  id: ID!
+}
+
+input ModelSubscriptionFootstoneFilterInput {
+  milestoneId: ModelSubscriptionIDInput
+  name: ModelSubscriptionStringInput
+  plans: ModelSubscriptionStringInput
+  updates: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionFootstoneFilterInput]
+  or: [ModelSubscriptionFootstoneFilterInput]
+  owner: ModelStringInput
+}

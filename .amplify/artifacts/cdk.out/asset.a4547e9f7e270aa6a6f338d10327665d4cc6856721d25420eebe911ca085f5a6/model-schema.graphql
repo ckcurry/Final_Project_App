@@ -1,0 +1,40 @@
+type Task @model @auth(rules: [{allow: owner, ownerField: "owner"}])
+{
+  name: String!
+  dueDate: String!
+  recurrence: String!
+  category: String!
+  notes: [TaskNote] @hasMany(references: ["taskId"])
+}
+
+type TaskNote @model @auth(rules: [{allow: owner, ownerField: "owner"}])
+{
+  taskId: ID!
+  task: Task @belongsTo(references: ["taskId"])
+  text: String
+  voice: String
+  timestamp: String
+}
+
+type Project @model @auth(rules: [{allow: owner, ownerField: "owner"}])
+{
+  name: String!
+  milestones: [Milestone] @hasMany(references: ["projectId"])
+}
+
+type Milestone @model @auth(rules: [{allow: owner, ownerField: "owner"}])
+{
+  projectId: ID!
+  project: Project @belongsTo(references: ["projectId"])
+  name: String!
+  footstones: [Footstone] @hasMany(references: ["milestoneId"])
+}
+
+type Footstone @model @auth(rules: [{allow: owner, ownerField: "owner"}])
+{
+  milestoneId: ID!
+  milestone: Milestone @belongsTo(references: ["milestoneId"])
+  name: String!
+  plans: [String]
+  updates: [String]
+}
