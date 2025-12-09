@@ -22,11 +22,15 @@ export default function SignIn({ onSignInSuccess, onSwitchToRegister }: SignInPr
       await signIn({ username: email.trim(), password });
       onSignInSuccess();
     } catch (err: any) {
-      if (err?.name === 'UserNotConfirmedException') {
+      console.log('Error details:', err);
+      console.log('Error message:', err?.message);
+      console.log('Error name:', err?.name);
+      console.log('Underlying:', err?.underlyingError?.message);
+      if (err?.name === 'UserNotConfirmedException' || err?.code === 'UserNotConfirmedException') {
         setNeedsConfirmation(true);
         setError('Please confirm your email first');
       } else {
-        setError(err?.message ?? 'Sign in failed');
+        setError(err?.underlyingError?.message || err?.message || 'Sign in failed');
       }
     } finally {
       setLoading(false);
@@ -43,7 +47,12 @@ export default function SignIn({ onSignInSuccess, onSwitchToRegister }: SignInPr
       await signIn({ username: email.trim(), password });
       onSignInSuccess();
     } catch (err: any) {
-      setError(err?.message ?? 'Confirmation failed');
+      if (err?.message?.includes('Current status is CONFIRMED')) {
+        setNeedsConfirmation(false);
+        await handleSignIn();
+      } else {
+        setError(err?.message ?? 'Confirmation failed');
+      }
     } finally {
       setLoading(false);
     }
