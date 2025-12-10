@@ -2,6 +2,8 @@ import { FC, useEffect, useMemo, useState } from 'react';
 import { Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HouseholdTasks from './HouseholdTasks';
+import HouseholdProjects from './HouseholdProjects';
+import Family from './Family';
 
 const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 type HouseholdTask = { name: string; type: string };
@@ -29,6 +31,8 @@ const Household: FC = () => {
   const [doAllLaundry, setDoAllLaundry] = useState(false);
   const [showLaundryOnCalendar, setShowLaundryOnCalendar] = useState(false);
   const laundryStorageKey = 'household-laundry-settings';
+  const [showProjects, setShowProjects] = useState(false);
+  const [showFamily, setShowFamily] = useState(false);
 
   useEffect(() => {
     const loadTasks = async () => {
@@ -172,7 +176,17 @@ const Household: FC = () => {
       </View>
 
       <View style={styles.actionRow}>
-        <TouchableOpacity style={styles.actionButton}>
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => {
+            setShowProjects(true);
+            setShowTasks(false);
+            setDeleteMode(false);
+            setAddingTask(false);
+            setShowLaundryDays(false);
+            setShowLaundryOnCalendar(false);
+          }}
+        >
           <Text style={styles.actionText}>Projects</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -190,10 +204,65 @@ const Household: FC = () => {
         <TouchableOpacity style={styles.actionButton}>
           <Text style={styles.actionText}>News</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton}>
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => {
+            setShowFamily(true);
+            setShowTasks(false);
+            setShowProjects(false);
+            setDeleteMode(false);
+            setAddingTask(false);
+            setShowLaundryDays(false);
+            setShowLaundryOnCalendar(false);
+          }}
+        >
           <Text style={styles.actionText}>Family</Text>
         </TouchableOpacity>
       </View>
+
+      <Modal
+        visible={showProjects}
+        animationType="slide"
+        onRequestClose={() => setShowProjects(false)}
+        transparent
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalCard}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalTitle}>Household Projects</Text>
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={() => setShowProjects(false)}
+              >
+                <Text style={styles.closeText}>Close</Text>
+              </TouchableOpacity>
+            </View>
+            <HouseholdProjects onMakeProject={() => setShowProjects(false)} />
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        visible={showFamily}
+        animationType="slide"
+        onRequestClose={() => setShowFamily(false)}
+        transparent
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalCard}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalTitle}>Family</Text>
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={() => setShowFamily(false)}
+              >
+                <Text style={styles.closeText}>Close</Text>
+              </TouchableOpacity>
+            </View>
+            <Family activeProject="Project Alpha" members={[{ name: 'Alex' }, { name: 'Jamie' }]} />
+          </View>
+        </View>
+      </Modal>
 
       <Modal
         visible={showTasks}
